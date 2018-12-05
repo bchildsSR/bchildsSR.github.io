@@ -1,0 +1,279 @@
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+
+<body>
+<table>
+  <tr>
+    <th>Current Page Data</th>
+  </tr>
+  <tr>
+    <td>Page Type:</td>
+    <td class="page_type"></td>
+  </tr>
+    <tr>
+    <td>Doc Id:</td>
+    <td class="doc_id"></td>
+  </tr>
+  <tr>
+    <td>Sku:</td>
+    <td class="sku"></td>
+  </tr>
+  <tr>
+    <td>Item Name:</td>
+    <td class="item_name"></td>
+  </tr>
+  <tr>
+    <td>Item Price:</td>
+    <td class="item_price"></td>
+  </tr>
+  <tr>
+    <td>Item Original Price:</td>
+    <td class="item_original_price"></td>
+  </tr>
+  <tr>
+    <td>Minimum requirements met?</td>
+    <td class="pass_fail_old"></td>
+  </tr>
+</table>
+
+<form>
+  <h4>Find Page Selectors</h4>
+  <p>Product Page:</p>
+  <input type="text" name="product_page">
+  <p class="product_page_new"></p>
+  <p>Doc Id:</p>
+  <input type="text" name="doc_id">
+  <p class="doc_id_new"></p>
+  <p>Sku:</p>
+  <input type="text" name="sku">
+  <p class="sku_new"></p>
+  <p>Item Name:</p>
+  <input type="text" name="item_name">
+  <p class="item_name_new"></p>
+  <p>Item Price:</p>
+  <input type="text" name="item_price">
+  <p class="item_price_new"></p>
+  <p>Item Original Price:</p>
+  <input type="text" name="item_original_price">
+  <p class="item_original_price_new"></p>
+  <p>Test New Selectors:</p>
+  <input type="submit" id="add" value="Add">
+</form>
+
+<table>
+  <tr>
+    <th>New Page Data</th>
+    <th>Saved Selectors</th>
+    <th>Value</th>
+    <th>Data Type</th>
+  </tr>
+  <tr>
+  <td>Page Type:</td>
+    <td class="product_page_selector"></td>
+    <td class="product_page_value"></td>
+    <td class="product_page_data_type"></td>
+  </tr>
+    <tr>
+    <td>Doc Id:</td>
+    <td class="doc_id_selector"></td>
+    <td class="doc_id_value"></td>
+    <td class="doc_id_data_type"></td>
+  </tr>
+  <tr>
+    <td>Sku:</td>
+    <td class="sku_selector"></td>
+    <td class="sku_value"></td>
+    <td class="sku_data_type"></td>
+  </tr>
+    <tr>
+    <td>Item Name:</td>
+    <td class="item_name_selector"></td>
+    <td class="item_name_value"></td>
+    <td class="item_name_data_type"></td>
+  </tr>
+  <tr>
+    <td>Item Price:</td>
+    <td class="item_price_selector"></td>
+    <td class="item_price_value"></td>
+    <td class="item_price_data_type"></td>
+  </tr>
+    <tr>
+    <td>Items Original Price:</td>
+    <td class="item_original_price_selector"></td>
+    <td class="item_original_price_value"></td>
+    <td class="item_original_price_data_type"></td>
+  </tr>
+</table>
+
+</br>
+<form>
+  <input type="submit" id="validate" value="Validate">
+</form>
+
+<table>
+  <tr>
+  	<p>Test Saved Selectors and Values:</p>
+    <td class="pass_fail_new"></th>
+  </tr>
+</table>
+
+<script>
+    document.querySelector('.product_page_selector').innerHTML = localStorage.getItem("product_page_selector");
+    document.querySelector('.product_page_value').innerHTML = localStorage.getItem("product_page_value");
+    document.querySelector('.product_page_data_type').innerHTML = localStorage.getItem("product_page_data_type");
+
+    document.querySelector('.doc_id_selector').innerHTML = localStorage.getItem("doc_id_selector");
+    document.querySelector('.doc_id_value').innerHTML = localStorage.getItem("doc_id_value");
+    document.querySelector('.doc_id_data_type').innerHTML = localStorage.getItem("doc_id_data_type");
+
+    document.querySelector('.sku_selector').innerHTML = localStorage.getItem("sku_selector");
+    document.querySelector('.sku_value').innerHTML = localStorage.getItem("sku_value");
+    document.querySelector('.sku_data_type').innerHTML = localStorage.getItem("sku_data_type");
+
+    document.querySelector('.item_name_selector').innerHTML = localStorage.getItem("item_name_selector");
+    document.querySelector('.item_name_value').innerHTML = localStorage.getItem("item_name_value");
+    document.querySelector('.item_name_data_type').innerHTML = localStorage.getItem("item_name_data_type");
+
+    document.querySelector('.item_price_selector').innerHTML = localStorage.getItem("item_price_selector");
+    document.querySelector('.item_price_value').innerHTML = localStorage.getItem("item_price_value");
+    document.querySelector('.item_price_data_type').innerHTML = localStorage.getItem("item_price_data_type");
+
+    document.querySelector('.item_original_price_selector').innerHTML = localStorage.getItem("item_original_price_selector");
+    document.querySelector('.item_original_price_value').innerHTML = localStorage.getItem("item_original_price_value");
+    document.querySelector('.item_original_price_data_type').innerHTML = localStorage.getItem("item_original_price_data_type");
+
+    document.querySelector('.pass_fail_new').innerHTML = localStorage.getItem("validation_result");
+
+	rawData = "auth_token=&sr_browser_id=4e0908b5-24ca-452a-b321-83a09ce494f2&pik_session_id=a305d218-ed46-85b-4b61-a2655343568&retailer_code=WHBM&experiments=mso%3A2%2Cls_1%3A2&page_url=http%3A%2F%2Fpikmonitor.s-9.us%2Fdivs%2Fstaging%2FWHBM&page_title=WHBM+(Staging)&sku=&doc_id=&referrer=&page_id=1543868022003&utm_medium=null&utm_content=null&country=undefined&loyalty_id=undefined&customer_email=undefined&page_type=category&cart_total=&cart_subtotal=38.94&cart_shipping=&cart_discount=&cart_gift_card=&cart_tax=&items_in_cart=".split('&'); //atob(sr_$.model.data).split('&')
+    trackingObj = {};
+    rawData.forEach((a)=> {i = a.split('='), trackingObj[i[0]] = i[1]});
+
+    document.querySelector('.page_type').innerHTML = trackingObj["page_type"];
+    document.querySelector('.doc_id').innerHTML = trackingObj["doc_id"];
+    document.querySelector('.sku').innerHTML = trackingObj["sku"];
+    document.querySelector('.item_name').innerHTML = trackingObj["item_name"];
+    document.querySelector('.item_price').innerHTML = trackingObj["item_price"];
+    document.querySelector('.item_original_price').innerHTML = trackingObj["item_original_price"];
+
+
+    if (trackingObj["page_type"] === "product"
+      && (trackingObj["doc_id"] !== "" || trackingObj["doc_id"] !== undefined)
+      && (trackingObj["item_name"] !== "" || trackingObj["item_name"] !== undefined)
+      && (trackingObj["item_price"] !== "" || trackingObj["item_price"] !== undefined)
+      ) {
+          document.querySelector('.pass_fail_old').innerHTML = "TRUE";
+    } else {
+      document.querySelector('.pass_fail_old').innerHTML = "FALSE";
+    }
+
+	let product_page_selector = document.querySelector('[name="product_page"]');
+	product_page_selector.addEventListener('keyup', (e) => {
+		document.querySelector('.product_page_new').innerHTML = 
+		`Value: ${document.querySelector(product_page_selector.value)
+		&& document.querySelector(product_page_selector.value).innerText} 
+		Data Type: ${typeof (document.querySelector(product_page_selector.value)
+		&& document.querySelector(product_page_selector.value).innerText)}`;
+	});
+
+	let doc_id_selector = document.querySelector('[name="doc_id"]');
+	doc_id_selector.addEventListener('keyup', (e) => {
+		document.querySelector('.doc_id_new').innerHTML = 
+		`Value: ${document.querySelector(doc_id_selector.value)
+		&& document.querySelector(doc_id_selector.value).innerText} 
+		Data Type: ${typeof (document.querySelector(doc_id_selector.value)
+		&& document.querySelector(doc_id_selector.value).innerText)}`;
+	});
+
+  let sku_selector = document.querySelector('[name="sku"]');
+  sku_selector.addEventListener('keyup', (e) => {
+    document.querySelector('.sku_new').innerHTML = 
+    `Value: ${document.querySelector(sku_selector.value)
+    && document.querySelector(sku_selector.value).innerText} 
+    Data Type: ${typeof (document.querySelector(sku_selector.value)
+    && document.querySelector(sku_selector.value).innerText)}`;
+  });
+
+  let item_name_selector = document.querySelector('[name="item_name"]');
+  item_name_selector.addEventListener('keyup', (e) => {
+    document.querySelector('.item_name_new').innerHTML = 
+    `Value: ${document.querySelector(item_name_selector.value)
+    && document.querySelector(item_name_selector.value).innerText} 
+    Data Type: ${typeof (document.querySelector(item_name_selector.value)
+    && document.querySelector(item_name_selector.value).innerText)}`;
+  });
+
+  let item_price_selector = document.querySelector('[name="item_price"]');
+  item_price_selector.addEventListener('keyup', (e) => {
+    document.querySelector('.item_price_new').innerHTML = 
+    `Value: ${document.querySelector(item_price_selector.value)
+    && document.querySelector(item_price_selector.value).innerText} 
+    Data Type: ${typeof (document.querySelector(item_price_selector.value)
+    && document.querySelector(item_price_selector.value).innerText)}`;
+  });
+
+  let item_original_price_selector = document.querySelector('[name="item_original_price"]');
+  item_original_price_selector.addEventListener('keyup', (e) => {
+    document.querySelector('.item_original_price_new').innerHTML = 
+    `Value: ${document.querySelector(item_original_price_selector.value)
+    && document.querySelector(item_original_price_selector.value).innerText} 
+    Data Type: ${typeof (document.querySelector(item_original_price_selector.value)
+    && document.querySelector(item_original_price_selector.value).innerText)}`;
+  });
+
+	let add = document.querySelector('#add');
+
+	add.addEventListener('click', () => {
+		if (product_page_selector.value) {
+			localStorage.setItem("product_page_selector", product_page_selector.value);
+			localStorage.setItem("product_page_value", document.querySelector(product_page_selector.value).innerText);
+			localStorage.setItem("product_page_data_type", typeof document.querySelector(product_page_selector.value).innerText);
+		};
+		if (doc_id_selector.value) {
+			localStorage.setItem("doc_id_selector", doc_id_selector.value);
+			localStorage.setItem("doc_id_value", document.querySelector(doc_id_selector.value).innerText);
+			localStorage.setItem("doc_id_data_type", typeof document.querySelector(doc_id_selector.value).innerText);
+		};
+    if (sku_selector.value) {
+      localStorage.setItem("sku_selector", sku_selector.value);
+      localStorage.setItem("sku_value", document.querySelector(sku_selector.value).innerText);
+      localStorage.setItem("sku_data_type", typeof document.querySelector(sku_selector.value).innerText);
+    };
+    if (item_name_selector.value) {
+      localStorage.setItem("item_name_selector", item_name_selector.value);
+      localStorage.setItem("item_name_value", document.querySelector(item_name_selector.value).innerText);
+      localStorage.setItem("item_name_data_type", typeof document.querySelector(item_name_selector.value).innerText);
+    };
+    if (item_price_selector.value) {
+      localStorage.setItem("item_price_selector", item_price_selector.value);
+      localStorage.setItem("item_price_value", document.querySelector(item_price_selector.value).innerText);
+      localStorage.setItem("item_price_data_type", typeof document.querySelector(item_price_selector.value).innerText);
+    };
+    if (item_original_price.value) {
+      localStorage.setItem("item_original_price_selector", item_original_price_selector.value);
+      localStorage.setItem("item_original_price_value", document.querySelector(item_original_price_selector.value).innerText);
+      localStorage.setItem("item_original_price_data_type", typeof document.querySelector(item_original_price_selector.value).innerText);
+    };
+	});
+
+	let validate = document.querySelector('#validate');
+
+	validate.addEventListener('click', () => {
+	    if (document.querySelector('.product_page_value').innerText === "product"
+	        && typeof document.querySelector('.product_page_value').innerText === "string"
+          && (document.querySelector('.doc_id_value').innerText !== "" || document.querySelector('.doc_id_value').innerText !== undefined) 
+          && typeof document.querySelector('.doc_id_value').innerText === "string"
+          && (document.querySelector('.item_name_value').innerText !== "" || document.querySelector('.item_name_value').innerText !== undefined) 
+          && typeof document.querySelector('.item_name_value').innerText === "string"
+          && (document.querySelector('.item_price_value').innerText !== "" || document.querySelector('.item_price_value').innerText !== undefined) 
+          && typeof document.querySelector('.item_price_value').innerText === "string"
+			) {
+	     localStorage.setItem("validation_result", "PASSED");
+		} else {
+			localStorage.setItem("validation_result", "FAILED");
+		}
+	});
+</script>
+</body>
